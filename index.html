@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Sanchit Fans 🔥</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:      #C8102E;
+      --red-dark: #8B0000;
+      --red-glow: rgba(200,16,46,0.22);
+      --black:    #080808;
+      --surface:  #111111;
+      --card:     #161616;
+      --border:   #242424;
+      --white:    #F2F2F2;
+      --muted:    #777777;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      max-width: 430px;
+      margin: 0 auto;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+    }
+
+    .nav-name span { color: var(--red); }
+
+    .nav-cta {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      text-decoration: none;
+      border: 1px solid var(--red);
+      padding: 0.4rem 0.9rem;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.4rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 55% at 50% 65%, var(--red-glow), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.2rem, 22vw, 6.5rem);
+      line-height: 0.88;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-name span { color: var(--red); }
+
+    .hero-fans {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 12vw, 3.4rem);
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    .hero-fans span { color: var(--red); }
+
+    .hero-sub {
+      margin-top: 1.4rem;
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 290px;
+    }
+
+    .hero-btn {
+      margin-top: 2.2rem;
+      display: inline-block;
+      padding: 1rem 2.8rem;
+      background: var(--red);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .hero-btn:active { background: var(--red-dark); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--muted);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-hint::after { content: '↓'; font-size: 0.9rem; color: var(--red); }
+
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── SECTION HEADERS ── */
+    .sec-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.6rem;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin-bottom: 2rem;
+    }
+
+    /* ── TIERS ── */
+    .tiers { padding: 3.5rem 1.4rem; }
+
+    .tier-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .tier-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid transparent;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .tier-card.featured { border-left-color: var(--red); background: #130606; }
+
+    .tier-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #1a1a1a;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tier-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .tier-photo img.loaded { opacity: 1; }
+
+    .photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--border);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .photo-placeholder .ph-icon { font-size: 2.4rem; line-height: 1; }
+
+    .photo-placeholder span {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #333;
+    }
+
+    .upload-label {
+      display: none;
+      position: absolute;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      background: rgba(200,16,46,0.12);
+      cursor: pointer;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 2px dashed var(--red);
+    }
+
+    .upload-input { display: none; }
+
+    .tier-info {
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .tier-left { flex: 1; }
+
+    .tier-badge {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    .tier-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: 0.06em;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .tier-desc {
+      font-size: 0.74rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .tier-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--red);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .tier-price small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 300;
+      color: var(--muted);
+      display: block;
+      text-align: right;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      padding: 3.5rem 1.4rem;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .steps { display: flex; flex-direction: column; gap: 1.8rem; }
+    .step { display: flex; gap: 1.2rem; align-items: flex-start; }
+
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--red);
+      opacity: 0.6;
+      line-height: 1;
+      min-width: 36px;
+    }
+
+    .step strong { display: block; font-weight: 600; font-size: 0.88rem; margin-bottom: 0.25rem; }
+    .step p { font-size: 0.78rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── CTA ── */
+    .cta-section { padding: 4rem 1.4rem; text-align: center; }
+
+    .cta-section p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 1rem 0 2rem;
+    }
+
+    .handle {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.1em;
+      color: var(--red);
+      text-decoration: none;
+      margin-bottom: 2rem;
+    }
+
+    .tip-btn {
+      display: block;
+      width: 100%;
+      padding: 1.1rem;
+      background: var(--red);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .tip-btn:active { background: var(--red-dark); }
+
+    footer {
+      padding: 1.5rem 1.4rem;
+      text-align: center;
+      font-size: 0.65rem;
+      color: #303030;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.08em;
+    }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-name">SANCHIT <span>FANS</span> 🔥</span>
+    <a href="#tip" class="nav-cta">Tip Now 💸</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">💋 Official Tips Page 💋</p>
+    <h1 class="hero-name">SAN<span>CHIT</span></h1>
+    <p class="hero-fans"><span>FANS</span> 😈</p>
+    <p class="hero-sub">Pick your tier 👇 Send the tip 💸 Get your photo 📸 Delivered within 24hrs — guaranteed 🔒</p>
+    <a href="#tiers" class="hero-btn">See All Tiers 🔥</a>
+    <span class="scroll-hint">scroll</span>
+  </section>
+
+  <!-- TIERS -->
+  <section class="tiers" id="tiers">
+    <p class="sec-label reveal">What You Get</p>
+    <h2 class="sec-title reveal">Choose Your Tier 👀</h2>
+
+    <div class="tier-stack">
+
+      <!-- TIER 1 -->
+      <div class="tier-card reveal">
+        <div class="tier-photo" id="photo-1">
+          <div class="photo-placeholder">
+            <span class="ph-icon">📷</span>
+            <span>Sample Preview</span>
+          </div>
+          <label class="upload-label" for="upload-1">+ Add Sample Photo</label>
+          <input class="upload-input" type="file" id="upload-1" accept="image/*" data-target="photo-1" />
+        </div>
+        <div class="tier-info">
+          <div class="tier-left">
+            <span class="tier-badge">Tier 1 · Starter 😇</span>
+            <div class="tier-name">Head Pick</div>
+            <p class="tier-desc">Clean face shot. Simple, cute, quick. 😊</p>
+          </div>
+          <div class="tier-price">₹99<small>cheapest</small></div>
+        </div>
+      </div>
+
+      <!-- TIER 2 -->
+      <div class="tier-card reveal">
+        <div class="tier-photo" id="photo-2">
+          <div class="photo-placeholder">
+            <span class="ph-icon">📷</span>
+            <span>Sample Preview</span>
+          </div>
+          <label class="upload-label" for="upload-2">+ Add Sample Photo</label>
+          <input class="upload-input" type="file" id="upload-2" accept="image/*" data-target="photo-2" />
+        </div>
+        <div class="tier-info">
+          <div class="tier-left">
+            <span class="tier-badge">Tier 2 😏</span>
+            <div class="tier-name">Half Body</div>
+            <p class="tier-desc">Waist-up. Shows the fit and the vibe. 💅</p>
+          </div>
+          <div class="tier-price">₹199</div>
+        </div>
+      </div>
+
+      <!-- TIER 3 -->
+      <div class="tier-card featured reveal">
+        <div class="tier-photo" id="photo-3">
+          <div class="photo-placeholder">
+            <span class="ph-icon">📷</span>
+            <span>Sample Preview</span>
+          </div>
+          <label class="upload-label" for="upload-3">+ Add Sample Photo</label>
+          <input class="upload-input" type="file" id="upload-3" accept="image/*" data-target="photo-3" />
+        </div>
+        <div class="tier-info">
+          <div class="tier-left">
+            <span class="tier-badge">Tier 3 · 🔥 Most Popular</span>
+            <div class="tier-name">Full Body</div>
+            <p class="tier-desc">Head to toe. Full look, full energy. 🥵</p>
+          </div>
+          <div class="tier-price">₹349<small>fan fav 💋</small></div>
+        </div>
+      </div>
+
+      <!-- TIER 4 -->
+      <div class="tier-card reveal">
+        <div class="tier-photo" id="photo-4">
+          <div class="photo-placeholder">
+            <span class="ph-icon">📷</span>
+            <span>Sample Preview</span>
+          </div>
+          <label class="upload-label" for="upload-4">+ Add Sample Photo</label>
+          <input class="upload-input" type="file" id="upload-4" accept="image/*" data-target="photo-4" />
+        </div>
+        <div class="tier-info">
+          <div class="tier-left">
+            <span class="tier-badge">Tier 4 · Premium 😈</span>
+            <div class="tier-name">Back Shot</div>
+            <p class="tier-desc">Rear angle. Full or cropped — you pick. 🍑</p>
+          </div>
+          <div class="tier-price">₹499<small>top tier 👑</small></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <p class="sec-label reveal">Process</p>
+    <h2 class="sec-title reveal">How It Works 💸</h2>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-num">1</span>
+        <div>
+          <strong>Pick Your Tier 👀</strong>
+          <p>Scroll through and choose what you want. Each tier is exactly what it says.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">2</span>
+        <div>
+          <strong>Send the Tip 💸</strong>
+          <p>Pay the exact amount to the handle below. Drop the tier number in the payment note.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">3</span>
+        <div>
+          <strong>DM the Screenshot 📲</strong>
+          <p>Send proof via DM. Your photo drops within 24 hours. 🔥</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="tip">
+    <p class="sec-label reveal">Send It</p>
+    <h2 class="sec-title reveal">Ready? 😈</h2>
+    <p class="reveal">Send payment to the handle below, then DM the screenshot with your tier. Simple. 💋</p>
+    <a href="#" class="handle reveal">@sanchit 🔥</a>
+    <a href="#" class="tip-btn reveal">DM to Order 💸</a>
+  </section>
+
+  <footer>© 2026 Sanchit Fans 🔥 · All rights reserved · No refunds 💀</footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => obs.observe(el));
+
+    document.querySelectorAll('.upload-input').forEach(input => {
+      input.addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return;
+        const targetId = this.dataset.target;
+        const container = document.getElementById(targetId);
+        const placeholder = container.querySelector('.photo-placeholder');
+
+        const existing = container.querySelector('img');
+        if (existing) existing.remove();
+
+        const reader = new FileReader();
+        reader.onload = e => {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.onload = () => img.classList.add('loaded');
+          container.insertBefore(img, placeholder);
+          if (placeholder) placeholder.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+  </script>
+
+</body>
+</html>
